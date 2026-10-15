@@ -1,0 +1,27 @@
+[Unit]
+Description=RaidStaff standalone Discord worker
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=raidstaff
+Group=raidstaff
+WorkingDirectory=/opt/raidstaff-discord-worker
+EnvironmentFile=/etc/raidstaff-worker.env
+Environment=RAIDSTAFF_DATA_DIR=/var/lib/raidstaff
+Environment=BIND_ADDRESS=127.0.0.1
+Environment=PORT=10000
+ExecStart=/usr/bin/java -jar /opt/raidstaff-discord-worker/target/raidstaff-discord-worker-1.0.0.jar
+Restart=always
+RestartSec=5
+StateDirectory=raidstaff
+StateDirectoryMode=0750
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/raidstaff
+
+[Install]
+WantedBy=multi-user.target

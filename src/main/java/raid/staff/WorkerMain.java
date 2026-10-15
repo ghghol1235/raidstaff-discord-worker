@@ -59,7 +59,8 @@ public final class WorkerMain extends ListenerAdapter {
 
     private void startHttpServer() throws Exception {
         int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "10000"));
-        HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0", port), 0);
+        String bindAddress = System.getenv().getOrDefault("BIND_ADDRESS", "0.0.0.0");
+        HttpServer server = HttpServer.create(new InetSocketAddress(bindAddress, port), 0);
         server.createContext("/health", exchange -> {
             byte[] body = (ready ? "ok" : "starting").getBytes(java.nio.charset.StandardCharsets.UTF_8);
             exchange.getResponseHeaders().set("Content-Type", "text/plain; charset=utf-8");

@@ -6,7 +6,7 @@ The HTTP bridge stores Discord title commands while Paper is offline, then deliv
 
 ## Secrets and permissions
 
-Set `DISCORD_BOT_TOKEN` and `MINECRAFT_BRIDGE_TOKEN` as Render secret environment variables. `DISCORD_GUILD_ID` and `TITLE_COMMAND_CHANNEL_ID` identify the server and title-command channel. Never commit or paste either secret into chat. Enable Discord's Server Members and Message Content privileged intents for the bot.
+Set `DISCORD_BOT_TOKEN` and `MINECRAFT_BRIDGE_TOKEN` as private environment variables on the worker host. `DISCORD_GUILD_ID` and `TITLE_COMMAND_CHANNEL_ID` identify the server and title-command channel. Never commit or paste either secret into chat. Enable Discord's Server Members and Message Content privileged intents for the bot.
 
 ## Run locally
 
@@ -23,18 +23,18 @@ java -jar target\raidstaff-discord-worker-1.0.0.jar
 
 ## Paper plugin connection
 
-Build the updated plugin source in `paper-plugin/src` with the server's existing RaidStaff build environment. After the Render service is healthy, set these keys in `plugins/RaidStaff/config.yml`:
+Build the updated plugin source in `paper-plugin/src` with the server's existing RaidStaff build environment. After the worker is healthy and has an HTTPS endpoint, set these keys in `plugins/RaidStaff/config.yml`:
 
 ```yaml
 standalone-worker:
   enabled: true
 bridge:
-  url: 'https://<your-render-service>.onrender.com'
-  token: '<same MINECRAFT_BRIDGE_TOKEN configured privately in Render>'
+  url: 'https://<your-worker-domain>'
+  token: '<same MINECRAFT_BRIDGE_TOKEN configured privately on the worker host>'
 ```
 
 The plugin uploads the existing local staff state to the worker on first connection, receives queued title commands, and reports their result. Keep the old data file until migration is confirmed in the server log.
 
 ## Hosting
 
-`render.yaml` declares a Docker web service with a persistent 1 GB disk. It requires a paid Render service and disk; the current Render prices are approximately $7/month for the 512 MB service plus $0.25/month for 1 GB of SSD disk. Render deployment has not yet been created.
+For a no-cost cloud attempt, see [`deploy/oci/README.md`](deploy/oci/README.md) for Oracle Cloud Always Free VM instructions. Always Free capacity may be unavailable and idle instances may be reclaimed. The `render.yaml` option is paid and has not been deployed.

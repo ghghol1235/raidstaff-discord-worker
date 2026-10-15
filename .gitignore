@@ -9,3 +9,5 @@
 
 !paper-plugin/
 !paper-plugin/**
+!deploy/
+!deploy/**
