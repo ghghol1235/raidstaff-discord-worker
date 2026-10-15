@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: raidstaff-discord-worker
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    disk:
+      name: raidstaff-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: DISCORD_BOT_TOKEN
+        sync: false
+      - key: DISCORD_GUILD_ID
+        value: "1550697780366802944"
+      - key: RAIDSTAFF_DATA_DIR
+        value: /app/data

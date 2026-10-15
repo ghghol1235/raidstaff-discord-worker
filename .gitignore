@@ -1,0 +1,8 @@
+**/*
+!Dockerfile
+!pom.xml
+!render.yaml
+!README.md
+!src/
+!src/**
+!/.gitignore
