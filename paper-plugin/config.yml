@@ -1,0 +1,16 @@
+guild-id: '1550697780366802944'
+title-channel-id: '1551061337981976646'
+channels:
+  management: '1557363292786393208'
+  applicant: '1557588071804047360'
+  interview-category: ''
+  interview-1: ''
+  interview-2: ''
+  interview-3: ''
+
+# Enable only after the standalone Render worker is healthy and both bridge secrets are set.
+standalone-worker:
+  enabled: false
+bridge:
+  url: ''
+  token: ''

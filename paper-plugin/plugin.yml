@@ -1,0 +1,12 @@
+name: RaidStaff
+version: 1.0.6
+main: raid.staff.RaidStaff
+api-version: '26.2'
+depend: [DiscordSRV, Skript]
+description: Persistent manual staff recruitment and Discord moderation audit integration
+commands:
+  raidstaff-sync-title:
+    description: Sync linked Discord nickname after a Minecraft title change
+    usage: /raidstaff-sync-title <minecraft-uuid>
+
+

@@ -12,7 +12,13 @@ services:
     envVars:
       - key: DISCORD_BOT_TOKEN
         sync: false
+      - key: MINECRAFT_BRIDGE_TOKEN
+        sync: false
+      - key: TITLE_COMMAND_CHANNEL_ID
+        value: "1551061337981976646"
       - key: DISCORD_GUILD_ID
         value: "1550697780366802944"
       - key: RAIDSTAFF_DATA_DIR
         value: /app/data
+
+
